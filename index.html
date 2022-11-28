@@ -5,6 +5,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script
+    src="http://ajaxref.com/ch2/errorreporter.js"
+    type="text/javascript"
+  ></script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "0771398c1e1b408387a2fc6114787130"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+                        
   <title>Lab 9</title>
 
   <style>
@@ -102,6 +114,99 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    let log = errorBtns[0];
+    log.addEventListener('click', lg => {
+      console.log('Message');
+    });
+
+    let error = errorBtns[1];
+    error.addEventListener('click', err => {
+      console.error('Error');
+    });
+
+    let count = errorBtns[2];
+    count.addEventListener('click', cnt => {
+      console.count();
+    })
+
+    let warning = errorBtns[3];
+    warning.addEventListener('click', wrnng => {
+      console.warn('Warning');
+    });
+
+    let assert = errorBtns[4];
+    assert.addEventListener('click', asrt => {
+      console.assert(1 == 2,  {'number':1, 'errorMsg':`Expected 2, received 1 instead`});
+    });
+
+    let clear = errorBtns[5];
+    clear.addEventListener('click', clr => {
+      console.clear();
+    });
+
+    let dir = errorBtns[6];
+    dir.addEventListener('click', dr => {
+      console.dir(dir);
+    });
+
+    let dirxml = errorBtns[7];
+    dirxml.addEventListener('click', drxml => {
+      console.dirxml(dirxml);
+    });
+
+    let groupStart = errorBtns[8];
+    groupStart.addEventListener('click', grpStrt => {
+      console.group('t1');
+    });
+
+    let groupEnd = errorBtns[9];
+    groupEnd.addEventListener('click', grpEnd => {
+      console.groupEnd('t1');      
+    });
+
+    let table = errorBtns[10];
+    table.addEventListener('click', tbl => {
+      console.table(['1', '2', '3', '4', '5']);
+    });
+
+    let startTimer = errorBtns[11];
+    startTimer.addEventListener('click', strtTmr => {
+      console.time();
+    });
+
+    let endTimer = errorBtns[12];
+    endTimer.addEventListener('click', endTmr => {
+      console.timeEnd();
+    });
+
+    let trace = errorBtns[13];
+    trace.addEventListener('click', trc => {
+      function one() {
+        function two() {
+          console.trace();
+        }
+        two();
+      }
+      one();
+    });
+
+    let globalError = errorBtns[14];
+    globalError.addEventListener('click', glbErr => {
+      throw new CustomError('Global Error');
+    });
+    
+    class CustomError extends Error{
+      constructor(message) {
+        super(message); 
+        this.name = "CustomError"; 
+      }
+    }
+
+    if (window.onerror) {
+        TrackJS.track("Track");
+        console.log("Error with track");
+      }
+
   </script>
 </body>
 
